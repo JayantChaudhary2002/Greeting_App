@@ -20,7 +20,7 @@ public class GreetingController {
         return greetingService.saveGreeting(message);
     }
 
-    // Get all greetings
+    // New endpoint to list all greetings
     @GetMapping
     public List<Greeting> getAllGreetings() {
         return greetingService.getAllGreetings();

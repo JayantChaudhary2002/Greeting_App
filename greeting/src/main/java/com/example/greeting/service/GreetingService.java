@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GreetingService {
@@ -19,14 +20,15 @@ public class GreetingService {
         return greetingRepository.save(greeting);
     }
 
-    // Retrieve all greetings
-    public List<Greeting> getAllGreetings() {
-        return greetingRepository.findAll();
-    }
 
     // Retrieve a single greeting by ID
     public Greeting getGreetingById(Long id) {
         return greetingRepository.findById(id).orElse(null);
+    }
+
+    // New method to list all greetings
+    public List<Greeting> getAllGreetings() {
+        return greetingRepository.findAll();
     }
 
     // Update a greeting message
