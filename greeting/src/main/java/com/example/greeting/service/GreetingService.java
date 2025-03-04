@@ -31,14 +31,15 @@ public class GreetingService {
         return greetingRepository.findAll();
     }
 
-    // Update a greeting message
+    // New method to update a greeting message
     public Greeting updateGreeting(Long id, String newMessage) {
-        Greeting greeting = greetingRepository.findById(id).orElse(null);
-        if (greeting != null) {
+        Optional<Greeting> optionalGreeting = greetingRepository.findById(id);
+        if (optionalGreeting.isPresent()) {
+            Greeting greeting = optionalGreeting.get();
             greeting.setMessage(newMessage);
-            return greetingRepository.save(greeting);
+            return greetingRepository.save(greeting);  // Save updated greeting
         }
-        return null;
+        return null;  // Return null if not found
     }
 
     // Delete a greeting by ID

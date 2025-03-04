@@ -32,7 +32,7 @@ public class GreetingController {
         return greetingService.getGreetingById(id);
     }
 
-    // Update a greeting
+    // New endpoint to edit a greeting message
     @PutMapping("/{id}")
     public Greeting updateGreeting(@PathVariable Long id, @RequestBody String newMessage) {
         return greetingService.updateGreeting(id, newMessage);
