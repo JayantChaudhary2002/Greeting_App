@@ -38,10 +38,14 @@ public class GreetingController {
         return greetingService.updateGreeting(id, newMessage);
     }
 
-    // Delete a greeting
+    // New endpoint to delete a greeting message
     @DeleteMapping("/{id}")
     public String deleteGreeting(@PathVariable Long id) {
-        greetingService.deleteGreeting(id);
-        return "Greeting deleted successfully!";
+        boolean isDeleted = greetingService.deleteGreeting(id);
+        if (isDeleted) {
+            return "Greeting deleted successfully!";
+        } else {
+            return "Greeting not found!";
+        }
     }
 }

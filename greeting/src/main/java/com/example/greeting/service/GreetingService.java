@@ -42,8 +42,12 @@ public class GreetingService {
         return null;  // Return null if not found
     }
 
-    // Delete a greeting by ID
-    public void deleteGreeting(Long id) {
-        greetingRepository.deleteById(id);
+    // New method to delete a greeting message by ID
+    public boolean deleteGreeting(Long id) {
+        if (greetingRepository.existsById(id)) {
+            greetingRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
