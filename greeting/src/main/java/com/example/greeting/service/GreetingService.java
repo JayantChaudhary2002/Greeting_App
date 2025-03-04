@@ -1,49 +1,46 @@
 package com.example.greeting.service;
 
 import com.example.greeting.model.Greeting;
+import com.example.greeting.repository.GreetingRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class GreetingService {
 
-    // UC2
-    // Method to return the simple "Hello World" greeting
-    public Greeting getSimpleGreeting() {
-        return new Greeting("Hello World");
+    @Autowired
+    private GreetingRepository greetingRepository;
+
+    // Save a greeting message
+    public Greeting saveGreeting(String message) {
+        Greeting greeting = new Greeting(message);
+        return greetingRepository.save(greeting);
     }
 
-    // UC3
-    // Method to return greeting with both First and Last name
-    public Greeting getGreetingWithName(String firstName, String lastName) {
-        if (firstName != null && lastName != null) {
-            return new Greeting("Hello, " + firstName + " " + lastName + "!");
-        }
-        return null; // We'll handle other cases in the controller
+    // Retrieve all greetings
+    public List<Greeting> getAllGreetings() {
+        return greetingRepository.findAll();
     }
 
-    // Method to return greeting with just First Name or Last Name
-    public Greeting getGreetingWithSingleName(String name) {
-        if (name != null) {
-            return new Greeting("Hello, " + name + "!");
+    // Retrieve a single greeting by ID
+    public Greeting getGreetingById(Long id) {
+        return greetingRepository.findById(id).orElse(null);
+    }
+
+    // Update a greeting message
+    public Greeting updateGreeting(Long id, String newMessage) {
+        Greeting greeting = greetingRepository.findById(id).orElse(null);
+        if (greeting != null) {
+            greeting.setMessage(newMessage);
+            return greetingRepository.save(greeting);
         }
         return null;
     }
 
-    // Method to return the default "Hello, world!"
-    public Greeting getGreeting() {
-        return new Greeting("Hello, world!");
-    }
-
-
-    public Greeting postGreeting(String name) {
-        return new Greeting("Hello, " + name + "!");
-    }
-
-    public Greeting putGreeting(String name) {
-        return new Greeting("Updated greeting for, " + name + "!");
-    }
-
-    public Greeting deleteGreeting(String name) {
-        return new Greeting("Deleted greeting for, " + name + "!");
+    // Delete a greeting by ID
+    public void deleteGreeting(Long id) {
+        greetingRepository.deleteById(id);
     }
 }
