@@ -17,6 +17,13 @@ public class GreetingController {
         return greetingService.getGreeting();
     }
 
+    //UC2
+    // New endpoint to return the simple "Hello World" message
+    @GetMapping("/simple")
+    public Greeting getSimpleGreeting() {
+        return greetingService.getSimpleGreeting(); // Calls the service layer for simple greeting
+    }
+
     @PostMapping
     public Greeting postGreeting(@RequestBody String name) {
         return greetingService.postGreeting(name);

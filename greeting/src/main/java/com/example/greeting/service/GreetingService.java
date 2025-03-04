@@ -6,6 +6,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class GreetingService {
 
+    // UC2
+    // Method to return the simple "Hello World" greeting
+    public Greeting getSimpleGreeting() {
+        return new Greeting("Hello World");
+    }
+
     public Greeting getGreeting() {
         return new Greeting("Hello, world!");
     }
