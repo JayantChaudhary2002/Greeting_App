@@ -28,11 +28,7 @@ public class EmailController {
             @RequestParam String subject,
             @RequestParam String message,
             @RequestParam String attachmentPath) {
-        try {
-            emailService.sendEmailWithAttachment(to, subject, message, attachmentPath);
-            return ResponseEntity.ok("Email with attachment sent successfully to " + to);
-        } catch (MessagingException e) {
-            return ResponseEntity.badRequest().body("Error sending email with attachment: " + e.getMessage());
-        }
+        emailService.sendEmailWithAttachment(to, subject, message, attachmentPath);
+        return ResponseEntity.ok("Email with attachment sent successfully to " + to);
     }
 }

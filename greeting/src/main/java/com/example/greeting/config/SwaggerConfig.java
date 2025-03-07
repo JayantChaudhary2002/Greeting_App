@@ -17,8 +17,8 @@ public class SwaggerConfig {
                         .version("1.0")
                         .description("This is a sample API for user authentication and email services.")
                         .contact(new Contact()
-                                .name("Your Name")
-                                .email("your-email@example.com")
+                                .name("Jayant Chaudhary")
+                                .email("jayantchaudhary2002.com")
                         )
                 );
     }

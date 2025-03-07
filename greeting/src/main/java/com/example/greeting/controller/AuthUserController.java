@@ -46,4 +46,19 @@ public class AuthUserController {
     public ResponseEntity<String> handleWeakJwtKeyException(WeakJwtKeyException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
+
+    @PutMapping("/forgotPassword/{email}")
+    public ResponseEntity<String> forgotPassword(@PathVariable String email, @RequestBody String newPassword) {
+        String response = authenticationService.forgotPassword(email, newPassword);
+        return ResponseEntity.ok(response);
+    }
+
+    @PutMapping("/resetPassword/{email}")
+    public ResponseEntity<String> resetPassword(
+            @PathVariable String email,
+            @RequestParam String currentPassword,
+            @RequestParam String newPassword) {
+        String response = authenticationService.resetPassword(email, currentPassword, newPassword);
+        return ResponseEntity.ok(response);
+    }
 }
